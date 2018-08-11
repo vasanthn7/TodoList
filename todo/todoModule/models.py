@@ -24,3 +24,10 @@ class TodoList(models.Model):
 
     def __str__(self):
         return self.title
+
+class Alert(models.Model):
+    Time = models.DateTimeField(default=None)
+    message_id = models.ForeignKey("TodoList", on_delete=models.CASCADE, null=False)
+
+    def __str__(self):
+        return self.Time
