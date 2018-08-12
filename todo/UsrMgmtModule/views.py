@@ -19,6 +19,5 @@ def register(request):
 
     else:
         form = RegistrationForm()
-
         args = {'form': form}
         return render(request, 'UsrMgmtModule/registration.html', args)

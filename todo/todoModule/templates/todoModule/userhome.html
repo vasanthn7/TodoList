@@ -8,8 +8,37 @@
         {% csrf_token %}
         <p>{{ form.title.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.title }}</p>
         <p>{{ form.content.label_tag }} {{ form.content }}</p>
-        <p>{{ form.due_date.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.due_date }}</p>
-        <!-- {{ form.title.as_p }} -->
+        <p>{{ form.due_date.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ form.due_date }}</p>
+        <p style="inline;">Due date format is<br>YYYY-MM-DD HH:mm:ss<br>(Eg:'2018-10-25 19:00:00')</p>
+        <!-- <div class="datetime-input">
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group date datetime-input' id='datetimepicker1'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker1').datetimepicker();
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $('.datetime-input').datetimepicker({
+                    format:'YYYY-MM-DD HH:mm:ss'
+                });
+            });
+        </script> -->
+
         <br><br>
         <button type="submit">Create To-do List</button>
     </form>
@@ -17,11 +46,29 @@
 
 {% block list%}
     {% for todo in todolists %}
-        <h3 align="left">{{todo.title}}</h3>
-        <p>{{todo.content}}</p>
-        <ul>
-            {{todo.due_date}}
-        </ul>
-        <br>
+        {% if todo.status == "pending" %}
+            <div div class="alert alert-danger">
+                <h3 align="left">{{todo.title}}</h3>
+                <p>{{todo.content}}</p>
+                <ul>
+                    {{todo.due_date}}
+                </ul>
+                <!-- <form action="{% url 'done' pk=todo.id %}"method="post" > -->
+                    <!-- {% csrf_token %} -->
+                    <p align="right">
+                        <button style="color: black;" type="submit" class="btn btn-outline-danger btn-lg">Done</button>
+                    </p>
+                <!-- </form> -->
+            </div>
+            {% else %}
+                <div class="alert alert-success">
+                    <h3 align="left">{{todo.title}}</h3>
+                    <p>{{todo.content}}</p>
+                    <ul>
+                        {{todo.due_date}}
+                    </ul>
+                </div>
+            {% endif %}
+            <br>
     {% endfor %}
 {% endblock %}
