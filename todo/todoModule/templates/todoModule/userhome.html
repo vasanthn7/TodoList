@@ -4,5 +4,24 @@
 {% endblock %}
 
 {% block body%}
-    <h1>The User's Homepage</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ form.title.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.title }}</p>
+        <p>{{ form.content.label_tag }} {{ form.content }}</p>
+        <p>{{ form.due_date.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.due_date }}</p>
+        <!-- {{ form.title.as_p }} -->
+        <br><br>
+        <button type="submit">Create To-do List</button>
+    </form>
+{% endblock %}
+
+{% block list%}
+    {% for todo in todolists %}
+        <h3 align="left">{{todo.title}}</h3>
+        <p>{{todo.content}}</p>
+        <ul>
+            {{todo.due_date}}
+        </ul>
+        <br>
+    {% endfor %}
 {% endblock %}
