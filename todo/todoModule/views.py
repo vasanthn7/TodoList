@@ -5,4 +5,4 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def userhome(request):
-    return HttpResponse("User Home Page")
+    return render(request, 'todoModule/userhome.html')
