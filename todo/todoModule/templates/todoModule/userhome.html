@@ -45,39 +45,15 @@
 {% endblock %}
 
 {% block list%}
-    {% for todo in todolists %}
-<<<<<<< HEAD
-        {% if todo.status == "pending" %}
-            <div div class="alert alert-danger">
-=======
+{% for todo in todolists %}
     {% if todo.deleted_on == NULL%}
         {% if todo.status == "pending" %}
             <div class="alert alert-danger">
->>>>>>> Restart
                 <h3 align="left">{{todo.title}}</h3>
                 <p>{{todo.content}}</p>
                 <ul>
                     {{todo.due_date}}
                 </ul>
-<<<<<<< HEAD
-                <!-- <form action="{% url 'done' pk=todo.id %}"method="post" > -->
-                    <!-- {% csrf_token %} -->
-                    <p align="right">
-                        <button style="color: black;" type="submit" class="btn btn-outline-danger btn-lg">Done</button>
-                    </p>
-                <!-- </form> -->
-            </div>
-            {% else %}
-                <div class="alert alert-success">
-                    <h3 align="left">{{todo.title}}</h3>
-                    <p>{{todo.content}}</p>
-                    <ul>
-                        {{todo.due_date}}
-                    </ul>
-                </div>
-            {% endif %}
-            <br>
-=======
                 <a href="{% url 'statusdone' pk=todo.id %}">
                     <p align="right">
                         <button type="button" class="btn btn-danger">Done</button>
@@ -105,6 +81,6 @@
         {% endif %}
     {% endif %}
     <br>
->>>>>>> Restart
+
     {% endfor %}
 {% endblock %}

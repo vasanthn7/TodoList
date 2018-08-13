@@ -36,16 +36,6 @@ class UserHome(TemplateView):
         args = {'form': form,'todolists':todolists}
         return render(request, self.template_name, args)
 
-<<<<<<< HEAD
-def statusdone(request):
-    if request.method == 'POST':
-        form = TodoDone(request.POST)
-        if form.is_valid():
-            # form.save()
-            return redirect('/')
-        else:
-            return HttpResponse("Invalid inputs,retry")
-=======
 class Deleted(TemplateView):
     template_name = 'todoModule/deleted.html'
 
@@ -99,60 +89,3 @@ def permdelete(request, pk):
     todo.delete()
 
     return redirect('/login/profile/deleted')
-
-
-# def userhome(request):
-#     return render(request, 'todoModule/userhome.html')
->>>>>>> Restart
-
-# from __future__ import unicode_literals
-#
-# from django.shortcuts import render, redirect, HttpResponse
-# from UsrMgmtModule.forms import RegistrationForm
-#
-# # Create your views here.
-# def home(request):
-#     return render(request, 'UsrMgmtModule/home.html')
-#
-# def register(request):
-#     if request.method == 'POST':
-#         form = RegistrationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-#         else:
-#             return HttpResponse("Invalid inputs,retry")
-#
-#     else:
-#         form = RegistrationForm()
-#
-#         args = {'form': form}
-#         return render(request, 'UsrMgmtModule/registration.html', args)
-
-#
-# class RegistrationForm(UserCreationForm):
-#
-#     email = forms.EmailField(required=True)
-#
-#     class Meta:
-#         model = User
-#         fields = ('username','first_name','last_name','email','password1','password2')
-#         # help_text = {
-#         #     'username': None,
-#         #     'first_name': None,
-#         #     'last_name': None,
-#         #     'email': None,
-#         #     'password1': None,
-#         #     'password2': None,
-#         # }
-#
-#     def save(self, commit=True):
-#         user = super(RegistrationForm, self).save(commit=False)
-#         user.first_name = self.cleaned_data['first_name']
-#         user.last_name = self.cleaned_data['last_name']
-#         user.email = self.cleaned_data['email']
-#
-#         if commit:
-#             user.save()
-#
-#         return user
