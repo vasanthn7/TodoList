@@ -13,7 +13,8 @@ class TodoList(models.Model):
     }
     title = models.CharField(max_length=100)
     content = models.TextField(blank=True)
-    due_date = models.DateTimeField() #Set parameters
+    due_date = models.DateField(blank=False, default=None)
+    due_time = models.TimeField(blank=False, default=None) #Set parameters
     creation_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="pending")
@@ -21,7 +22,7 @@ class TodoList(models.Model):
     sub_task_of = models.ForeignKey("TodoList", on_delete=models.CASCADE, null=True, default=None)
 
     class Meta:
-        ordering = ["due_date"]
+        ordering = ["due_date" ,"due_time"]
 
     def __str__(self):
         return self.title

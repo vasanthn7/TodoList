@@ -4,12 +4,15 @@
 {% endblock %}
 
 {% block body%}
+
     <form method="post">
         {% csrf_token %}
         <p>{{ form.title.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.title }}</p>
         <p>{{ form.content.label_tag }} {{ form.content }}</p>
         <p>{{ form.due_date.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ form.due_date }}</p>
-        <p style="inline;">Due date format is<br>YYYY-MM-DD HH:mm:ss<br>(Eg:'2018-10-25 19:00:00')</p>
+        <p style="inline;">Due date format is YYYY-MM-DD<br>(Eg:'2018-10-25')</p>
+        <p>{{ form.due_time.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ form.due_time }}</p>
+        <p style="inline;">Due Time format is HH:mm:ss<br>(Eg:'2018-10-25')</p>
         <!-- <div class="datetime-input">
             <div class="container">
                 <div class="row">
@@ -45,6 +48,28 @@
 {% endblock %}
 
 {% block list%}
+<div class="container">
+    <form action="search/" method="post">
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
+</div>
+<br>
+<div class="btn-group container" >
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Due Date Filter
+        </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{% url 'datefilter' pk=1 %}">All</a><br>
+      <a class="dropdown-item" href="{% url 'datefilter' pk=2 %}">Today</a><br>
+      <a class="dropdown-item" href="{% url 'datefilter' pk=3 %}">This week</a><br>
+      <a class="dropdown-item" href="{% url 'datefilter' pk=4 %}">Next week</a><br>
+      <a class="dropdown-item" href="{% url 'datefilter' pk=5 %}">Over Due</a><br>
+    </div>
+</div>
+<br>
+<br>
+
 {% for todo in todolists %}
     {% if todo.deleted_on == NULL%}
         {% if todo.status == "pending" %}
@@ -52,7 +77,7 @@
                 <h3 align="left">{{todo.title}}</h3>
                 <p>{{todo.content}}</p>
                 <ul>
-                    {{todo.due_date}}
+                    {{todo.due_date}} {{todo.due_time}}
                 </ul>
                 <a href="{% url 'statusdone' pk=todo.id %}">
                     <p align="right">
@@ -70,7 +95,7 @@
                 <h3 align="left">{{todo.title}}</h3>
                 <p>{{todo.content}}</p>
                 <ul>
-                    {{todo.due_date}}
+                    {{todo.due_date}} {{todo.due_time}}
                 </ul>
                 <a href="{% url 'softdelete' pk=todo.id %}">
                     <p align="right">

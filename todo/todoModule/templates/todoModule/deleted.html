@@ -11,7 +11,7 @@
                 <h3 align="left">{{todo.title}}</h3>
                 <p>{{todo.content}}</p>
                 <ul>
-                    {{todo.due_date}}
+                    {{todo.due_date}} {{todo.due_time}}
                 </ul>
                 <a href="{% url 'restore' pk=todo.id %}">
                     <p align="right">
@@ -29,7 +29,7 @@
                 <h3 align="left">{{todo.title}}</h3>
                 <p>{{todo.content}}</p>
                 <ul>
-                    {{todo.due_date}}
+                    {{todo.due_date}} {{todo.due_time}}
                 </ul>
                 <a href="{% url 'restore' pk=todo.id %}">
                     <p align="right">
