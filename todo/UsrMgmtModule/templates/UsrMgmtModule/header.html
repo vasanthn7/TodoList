@@ -23,10 +23,11 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     {% if user.is_authenticated %}
                         <ul class="nav navbar-nav">
-                            <li><a href="/">Home</a></li>
+                            <li><a href="/login/profile">Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a>Hi, {{user.username}}</a></li>
+                            <li><a href="/login/profile/deleted">Deleted Todos</a></li>
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     {% else %}
