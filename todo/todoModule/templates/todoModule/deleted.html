@@ -1,0 +1,49 @@
+{% extends 'UsrMgmtModule/header.html' %}
+{% block head %}
+    <title>Deleted List</title>
+{% endblock %}
+
+{% block list%}
+    {% for todo in todolists %}
+    {% if todo.deleted_on != NULL%}
+        {% if todo.status == "pending" %}
+            <div class="alert alert-danger">
+                <h3 align="left">{{todo.title}}</h3>
+                <p>{{todo.content}}</p>
+                <ul>
+                    {{todo.due_date}}
+                </ul>
+                <a href="{% url 'restore' pk=todo.id %}">
+                    <p align="right">
+                        <button type="button" class="btn btn-danger">Restore</button>
+                    </p>
+                </a>
+                <a href="{% url 'permdelete' pk=todo.id %}">
+                    <p align="right">
+                        <button type="button" class="btn btn-danger">Delete Permantly</button>
+                    </p>
+                </a>
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <h3 align="left">{{todo.title}}</h3>
+                <p>{{todo.content}}</p>
+                <ul>
+                    {{todo.due_date}}
+                </ul>
+                <a href="{% url 'restore' pk=todo.id %}">
+                    <p align="right">
+                        <button type="button" class="btn btn-danger">Restore</button>
+                    </p>
+                </a>
+                <a href="{% url 'permdelete' pk=todo.id %}">
+                    <p align="right">
+                        <button type="button" class="btn btn-danger">Delete Permantly</button>
+                    </p>
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
+    <br>
+    {% endfor %}
+{% endblock %}

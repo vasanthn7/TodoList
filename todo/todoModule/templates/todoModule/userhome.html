@@ -17,11 +17,40 @@
 
 {% block list%}
     {% for todo in todolists %}
-        <h3 align="left">{{todo.title}}</h3>
-        <p>{{todo.content}}</p>
-        <ul>
-            {{todo.due_date}}
-        </ul>
-        <br>
+    {% if todo.deleted_on == NULL%}
+        {% if todo.status == "pending" %}
+            <div class="alert alert-danger">
+                <h3 align="left">{{todo.title}}</h3>
+                <p>{{todo.content}}</p>
+                <ul>
+                    {{todo.due_date}}
+                </ul>
+                <a href="{% url 'statusdone' pk=todo.id %}">
+                    <p align="right">
+                        <button type="button" class="btn btn-danger">Done</button>
+                    </p>
+                </a>
+                <a href="{% url 'softdelete' pk=todo.id %}">
+                    <p align="right">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </p>
+                </a>
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <h3 align="left">{{todo.title}}</h3>
+                <p>{{todo.content}}</p>
+                <ul>
+                    {{todo.due_date}}
+                </ul>
+                <a href="{% url 'softdelete' pk=todo.id %}">
+                    <p align="right">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </p>
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
+    <br>
     {% endfor %}
 {% endblock %}
