@@ -18,7 +18,7 @@ class TodoList(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="pending")
-    deleted_on = models.DateTimeField(default=None, null=True)
+    deleted_on = models.DateField(default=None, null=True)
     sub_task_of = models.ForeignKey("TodoList", on_delete=models.CASCADE, null=True, default=None)
 
     class Meta:

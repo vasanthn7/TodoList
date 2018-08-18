@@ -32,6 +32,9 @@ class UserHome(TemplateView):
             content = form.cleaned_data['content']
             due_date = form.cleaned_data['due_date']
             due_time = form.cleaned_data['due_time']
+            print "___________________________________"
+            print request.POST
+            print "___________________________________"
             form = TodoForm()
 
         todolists = TodoList.objects.filter(user=request.user)
@@ -104,7 +107,7 @@ def datefilter(request, pk):
         todolists = todolists.filter(due_date__range=(startdate, enddate))
 
     elif pk == 5:
-        todolists = todolists.filter(Q(due_date__lt = datetime.date.today()) | (Q(due_date = datetime.date.today()) & Q(due_time__lt = datetime.datetime.now().time())))
+        todolists = todolists.filter((Q(due_date__lt = datetime.date.today()) | (Q(due_date = datetime.date.today()) & Q(due_time__lt = datetime.datetime.now().time()))) &  Q(status = "pending"))
 
     args = {'form': form,'todolists':todolists}
     return render(request, 'todoModule/userhome.html', args)

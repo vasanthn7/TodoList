@@ -7,16 +7,16 @@ class TodoForm(forms.ModelForm):
     title = forms.CharField(label='Title', max_length=100)
     content = forms.CharField(label='Description', required=False)
     # due_date = forms.DateTimeField(label='Due Date')
-    due_date = forms.DateField()
+    due_date = forms.DateTimeField()
     due_time = forms.TimeField()
     # due_date = forms.SplitDateTimeField(widget=widgets.AdminSplitDateTime)
 
     class Meta:
         model = TodoList
         fields = ('title','content','due_date','due_time')
-        # widgets = {
-        #     'due_date': forms.DateTimeInput(attrs={'id': 'datetimepicker12', 'class': 'datetime-input'})
-        # }
+        widgets = {
+            'due_date': forms.DateTimeInput(attrs={'id': 'datetimepicker1', 'class': 'datetime-input'})
+        }
         # widgets = {'due_date': forms.DateTimeInput(attrs={'class': 'datetime-input'})}
 
 
