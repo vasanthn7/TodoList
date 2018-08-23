@@ -13,7 +13,7 @@
         <p style="inline;">Due date format is YYYY-MM-DD<br>(Eg:'2018-10-25')</p>
         <p>{{ form.due_time.label_tag }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ form.due_time }}</p>
         <p style="inline;">Due Time format is HH:mm:ss<br>(Eg:'2018-10-25')</p>
-        <!-- <div class="datetime-input">
+        <div class="datetime-input">
             <div class="container">
                 <div class="row">
                     <div class='col-sm-6'>
@@ -26,21 +26,17 @@
                             </div>
                         </div>
                     </div>
-                    <script type="text/javascript">
+                    <script>
                         $(function () {
-                            $('#datetimepicker1').datetimepicker();
+                            $('#datetime-input').datetimepicker({
+                                format:'YYYY-MM-DD HH:mm:ss'
+                            });
                         });
                     </script>
                 </div>
             </div>
         </div>
-        <script>
-            $(function () {
-                $('.datetime-input').datetimepicker({
-                    format:'YYYY-MM-DD HH:mm:ss'
-                });
-            });
-        </script> -->
+
 
         <br><br>
         <button type="submit">Create To-do List</button>
