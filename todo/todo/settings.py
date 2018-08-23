@@ -26,9 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '58jdj@ml6u0dwosufz%x8hgigytg^!fbgt)lzcag!jqlkhb2sb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -143,4 +143,8 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'todoModule.tasks.task_perm_delete',
         'schedule': crontab(hour='*'),
     }
+    # 'task-two': {
+    #     'task': 'todoModule.tasks.task_alert',
+    #     'schedule': crontab(),
+    # }
 }

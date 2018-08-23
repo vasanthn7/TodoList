@@ -119,3 +119,11 @@ def searchtitle(request):
     form = TodoForm()
     args = {'form': form,'todolists':todolists}
     return render(request, 'todoModule/userhome.html', args)
+
+# def searchtitle_redirect(request):
+#     text = request.POST['search']
+#     todolists = TodoList.objects.filter(user=request.user)
+#     todolists = todolists.filter(title__icontains=text)
+#     form = TodoForm()
+#     args = {'form': form,'todolists':todolists}
+#     return render(request, 'todoModule/userhome.html', args)
